@@ -1,0 +1,18 @@
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - src/data_ingestion.py
+    outs:
+    - data/raw
+
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py
+    params:
+    - params.yaml:
+        - preprocessing.test_size
+    deps:
+    - src/data_preprocessing.py
+    - data/raw/data.csv
+    outs:
+    - data/processed

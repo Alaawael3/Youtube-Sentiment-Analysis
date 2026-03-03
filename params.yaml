@@ -1,0 +1,22 @@
+preprocessing:
+  test_size: 0.2
+
+
+vectorization:
+  max_features: 10000
+  ngram_range: [1,3]
+
+
+model:
+  objective: 'multiclass'
+  num_class: 3
+  metric: 'multi_logloss'
+  n_estimators:  886
+  learning_rate: 0.06281921270935097
+  max_depth: 15
+  num_leaves: 47
+  min_child_samples: 14
+  colsample_bytree: 0.7801827733749587
+  subsample: 0.5007138378878573
+  reg_alpha: 0.2772849901256329 
+  reg_lambda: 1.0453957577562991 
