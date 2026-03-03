@@ -13,7 +13,7 @@ import pickle
 import yaml
 import logging
 import os
-
+import json
 
 # logging configuration
 logger = logging.getLogger("model_evaluation")
@@ -31,6 +31,8 @@ file_handler.setFormatter(formatter)
 
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
+
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 
 def load_params(params_path: str) -> dict:
@@ -54,7 +56,7 @@ def load_params(params_path: str) -> dict:
 def load_data(file_path: str) -> pd.DataFrame:
     """Load data from a CSV file."""
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, encoding="utf-8")
         df.dropna(inplace=True)  # Drop rows with NaN values
         logger.debug("Data loaded and NaNs dropped from %s", file_path)
         return df
@@ -142,7 +144,7 @@ def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
     try:
         model_info = {"run_id": run_id, "model_path": model_path}
         with open(file_path, "w") as file:
-            yaml.dump(model_info, file)
+            json.dump(model_info, file)
         logger.debug("Model information saved to %s", file_path)
     except Exception as e:
         logger.error("Error saving model information to %s: %s", file_path, e)
@@ -150,20 +152,24 @@ def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
 
 
 def main():
-    mlflow.set_tracking_uri("http://ec2-3-92-237-34.compute-1.amazonaws.com:5000/")
+    mlflow.set_tracking_uri(
+        "http://ec2-16-171-25-99.eu-north-1.compute.amazonaws.com:5000/"
+    )
     mlflow.set_experiment("dvc-pipeline-runs")
 
     with mlflow.start_run() as run:
         try:
-            params = load_params("../params.yaml")
+            params = load_params(os.path.join(ROOT_DIR, "params.yaml"))
 
             for key, value in params.items():
                 mlflow.log_param(key, value)
 
-            test_data = load_data("../data/proccessed/test_processed.csv")
+            test_data = load_data(os.path.join(ROOT_DIR, "data/processed/test.csv"))
 
-            model = load_model("../model/lgbm_model.pkl")
-            vectorizer = load_vectorizer("../model/tfidf_vectorizer.pkl")
+            model = load_model(os.path.join(ROOT_DIR, "model/lgbm_model.pkl"))
+            vectorizer = load_vectorizer(
+                os.path.join(ROOT_DIR, "model/tfidf_vectorizer.pkl")
+            )
 
             x_test = vectorizer.transform(test_data["clean_comment"])
             y_test = test_data["category"].values
@@ -184,10 +190,10 @@ def main():
             # Save model info
             # artifact_uri = mlflow.get_artifact_uri()
             model_path = "lgbm_model"
-            save_model_info(run.info.run_id, model_path, "experiment_info.yaml")
+            save_model_info(run.info.run_id, model_path, "experiment_info.json")
 
             # Log the vectorizer as an artifact
-            mlflow.log_artifact("../model/tfidf_vectorizer.pkl")
+            mlflow.log_artifact(os.path.join(ROOT_DIR, "model/tfidf_vectorizer.pkl"))
 
             report, cm = evaluate_model(model, x_test=x_test, y_test=y_test)
 

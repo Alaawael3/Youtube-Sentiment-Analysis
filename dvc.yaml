@@ -16,3 +16,46 @@ stages:
     - data/raw/data.csv
     outs:
     - data/processed
+
+  model_building:
+    cmd: python src/model_building.py
+    params:
+      - params.yaml:
+          - vectorization.max_features
+          - vectorization.ngram_range
+          - model.objective
+          - model.num_class
+          - model.metric
+          - model.n_estimators
+          - model.learning_rate
+          - model.max_depth
+          - model.num_leaves
+          - model.min_child_samples
+          - model.colsample_bytree
+          - model.subsample
+          - model.reg_alpha
+          - model.reg_lambda 
+    deps:
+      - src/model_building.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+    outs:
+      - model/lgbm_model.pkl
+      - model/tfidf_vectorizer.pkl
+
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+      - src/model_evaluation.py
+      - data/processed/test.csv
+      - model/lgbm_model.pkl
+      - model/tfidf_vectorizer.pkl
+    outs:
+      - experiment_info.json
+
+  register_model:
+    cmd: python src/register_model.py
+    deps:
+      - src/register_model.py
+      - experiment_info.json
+    

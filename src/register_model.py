@@ -24,7 +24,9 @@ import logging
 import os
 
 
-mlflow.set_tracking_uri("http://ec2-3-92-237-34.compute-1.amazonaws.com:5000/")
+mlflow.set_tracking_uri(
+    "http://ec2-16-171-25-99.eu-north-1.compute.amazonaws.com:5000/"
+)
 
 # logging configuration
 logger = logging.getLogger("model_registration")
@@ -67,7 +69,7 @@ def register_model(model_name, model_info):
         model_version = mlflow.register_model(model_uri, model_name)
         
         # mlflow.register_model() is high-level API , Stage transitions require the lower-level client, The client talks directly to: Tracking server and Model Registry database
-        client = mlflow.tacking.MlflowClient()
+        client = mlflow.tracking.MlflowClient()
         # Now you're telling MLflow: “Move this version to Staging(stagging means testing in mlflow).”
         client.transition_model_version_stage(
             name=model_name,

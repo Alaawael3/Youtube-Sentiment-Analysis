@@ -4,7 +4,7 @@ import yaml
 import pickle
 from lightgbm import LGBMClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
-
+import os
 
 # logging configuration
 logger = logging.getLogger("model_building")
@@ -23,6 +23,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 
 def load_params(params_path: str) -> dict:
@@ -66,7 +67,7 @@ def apply_vectorization(train_data: pd.DataFrame, test_data: pd.DataFrame, max_f
         X_test = vectorizer.transform(test_data['clean_comment'])
         logger.debug("TF-IDF vectorization applied to the text data")
         
-        with open('../model/tfidf_vectorizer.pkl', 'wb') as f:
+        with open(os.path.join(ROOT_DIR, "model/tfidf_vectorizer.pkl"), "wb") as f:
             pickle.dump(vectorizer, f)
         logger.debug("TF-IDF vectorizer saved successfully to ../model/tfidf_vectorizer.pkl")
         return X_train, X_test
@@ -75,11 +76,11 @@ def apply_vectorization(train_data: pd.DataFrame, test_data: pd.DataFrame, max_f
         raise
 
 
-def train_model(x_train, y_train, model, param) :
+def train_model(x_train, y_train, model) :
     try:
-        model = model(**param)
+        # model = model(**param)
         model.fit(x_train, y_train)
-        logger.debug("Model trained successfully with parameters: %s", param)
+        logger.debug("Model trained successfully with parameters: %s", model.get_params())
         return model
     except Exception as e:
         logger.error("Error during model training: %s", e)
@@ -102,11 +103,11 @@ def main():
         logger.debug("Starting model building process...")
         
         # Load parameters
-        params = load_params('../params.yaml')
+        params = load_params(os.path.join(ROOT_DIR, "params.yaml"))
         
         # Load data
-        train_data = load_data('../data/proccessed/train_processed.csv')
-        test_data = load_data('../data/proccessed/test_processed.csv')
+        train_data = load_data(os.path.join(ROOT_DIR, "data/processed/train.csv"))
+        test_data = load_data(os.path.join(ROOT_DIR, "data/processed/test.csv"))
         
         # Apply vectorization
         max_features = params['vectorization']['max_features']
@@ -115,13 +116,15 @@ def main():
         y_train = train_data['category'].values
         
         # Train model
-        model = LGBMClassifier()
         model_params = params['model']
-        model = train_model(X_train, y_train, model, model_params)
+        model = LGBMClassifier(**model_params)
+        model = train_model(X_train, y_train, model)
+        model_name = 'lgbm_model'
         
         # Save model
-        save_model(model, './model/sentiment_analysis_model.pkl')
-        
+        os.makedirs(os.path.join(ROOT_DIR, "model"), exist_ok=True)
+        save_model(model, os.path.join(ROOT_DIR, f"model/{model_name}.pkl"))
+
     except Exception as e:
         logger.error("Failed to complete the model building process: %s", e)
         print(f"Error: {e}")
