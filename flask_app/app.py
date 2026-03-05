@@ -2,7 +2,7 @@ import matplotlib
 
 matplotlib.use("Agg")  # Use non-interactive backend before importing pyplot
 
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, render_template, url_for, flash, redirect, request
 from flask_cors import CORS
 import io
 import matplotlib.pyplot as plt
@@ -102,10 +102,18 @@ def load_model_and_vectorizer(model_path, vectorizer_path):
 model, vectorizer = load_model_and_vectorizer("./model/lgbm_model.pkl", "./model/tfidf_vectorizer.pkl")  
 
 
+from flask import Flask, request, jsonify, render_template
+
+
 @app.route("/", methods=["GET", "POST"])
 def home():
-    data = request.json
-    if not data or not isinstance(data, dict):
+
+    if request.method == "GET":
+        return render_template("index.html")
+
+    data = request.get_json()
+
+    if not data:
         return jsonify({"error": "Invalid JSON body"}), 400
 
     comments = data.get("comments")
@@ -116,7 +124,8 @@ def home():
     if not isinstance(comments, list):
         return jsonify({"error": "'comments' must be a list of strings"}), 400
 
-    comments = [c for c in comments if isinstance(c, str) and c.strip()]
+    comments = [c.strip() for c in comments if isinstance(c, str) and c.strip()]
+
     if not comments:
         return jsonify({"error": "All comments were empty or invalid"}), 400
 
@@ -124,6 +133,7 @@ def home():
         processed = [process_row(comment) for comment in comments]
         transformed = vectorizer.transform(processed)
         predictions = model.predict(transformed).tolist()
+
     except Exception as e:
         app.logger.error(f"Prediction error: {e}")
         return jsonify({"error": "Prediction failed", "detail": str(e)}), 500
@@ -132,7 +142,9 @@ def home():
         {"comment": comment, "sentiment": int(sentiment)}
         for comment, sentiment in zip(comments, predictions)
     ]
+
     return jsonify(response), 200
+
 
 
 @app.route("/predict", methods=['POST'])
