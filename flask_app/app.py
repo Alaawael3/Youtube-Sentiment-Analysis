@@ -102,9 +102,37 @@ def load_model_and_vectorizer(model_path, vectorizer_path):
 model, vectorizer = load_model_and_vectorizer("./model/lgbm_model.pkl", "./model/tfidf_vectorizer.pkl")  
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return "Welcome to our flask api"
+    data = request.json
+    if not data or not isinstance(data, dict):
+        return jsonify({"error": "Invalid JSON body"}), 400
+
+    comments = data.get("comments")
+
+    if not comments:
+        return jsonify({"error": "No comments provided"}), 400
+
+    if not isinstance(comments, list):
+        return jsonify({"error": "'comments' must be a list of strings"}), 400
+
+    comments = [c for c in comments if isinstance(c, str) and c.strip()]
+    if not comments:
+        return jsonify({"error": "All comments were empty or invalid"}), 400
+
+    try:
+        processed = [process_row(comment) for comment in comments]
+        transformed = vectorizer.transform(processed)
+        predictions = model.predict(transformed).tolist()
+    except Exception as e:
+        app.logger.error(f"Prediction error: {e}")
+        return jsonify({"error": "Prediction failed", "detail": str(e)}), 500
+
+    response = [
+        {"comment": comment, "sentiment": int(sentiment)}
+        for comment, sentiment in zip(comments, predictions)
+    ]
+    return jsonify(response), 200
 
 
 @app.route("/predict", methods=['POST'])
@@ -335,6 +363,7 @@ def generate_trend_graph():
     except Exception as e:
         app.logger.error(f"Error in /generate_trend_graph: {e}")
         return jsonify({"error": f"Trend graph generation failed: {str(e)}"}), 500
+
 
 
 if __name__ == "__main__":
