@@ -8,6 +8,7 @@ __pycache__/
 data/*
 keys/*
 learned/*
+req.txt
 
 # Distribution / packaging
 .Python
