@@ -99,8 +99,15 @@ def load_model_and_vectorizer(model_path, vectorizer_path):
     except Exception as e:
         raise
 
-model, vectorizer = load_model_and_vectorizer("./model/lgbm_model.pkl", "./model/tfidf_vectorizer.pkl")  
+try:
+    model, vectorizer = load_model_and_vectorizer(
+        "./model/lgbm_model.pkl", "./model/tfidf_vectorizer.pkl"
+    )
+except Exception as e:
+    print(f"Failed to load model or vectorizer: {e}")
+    import sys
 
+    sys.exit(1)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
