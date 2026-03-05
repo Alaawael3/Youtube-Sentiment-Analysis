@@ -2,7 +2,7 @@ import matplotlib
 
 matplotlib.use("Agg")  # Use non-interactive backend before importing pyplot
 
-from flask import Flask, request, jsonify, send_file, render_template, url_for, flash, redirect, request
+from flask import Flask, request, jsonify, send_file, render_template, url_for, flash, redirect
 from flask_cors import CORS
 import io
 import matplotlib.pyplot as plt
@@ -100,9 +100,6 @@ def load_model_and_vectorizer(model_path, vectorizer_path):
         raise
 
 model, vectorizer = load_model_and_vectorizer("./model/lgbm_model.pkl", "./model/tfidf_vectorizer.pkl")  
-
-
-from flask import Flask, request, jsonify, render_template
 
 
 @app.route("/", methods=["GET", "POST"])
