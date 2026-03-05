@@ -2,7 +2,7 @@ FROM python:3.11-slim-bookworm
 
 WORKDIR /app
 
-copy . /app
+COPY . /app
 
 RUN pip install -r requirements.txt
 
