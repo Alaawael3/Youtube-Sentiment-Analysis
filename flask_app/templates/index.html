@@ -514,7 +514,7 @@
     errorBox.style.display = 'none';
     resultsEl.style.display = 'none';
 
-    const url = document.getElementById('apiUrl').value.trim() || 'http://localhost:8080/predict';
+    const url = document.getElementById('apiUrl').value.trim() || 'http://localhost:8080/';
 
     try {
       const res = await fetch(url, {
