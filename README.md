@@ -39,11 +39,11 @@ A **production-ready, end-to-end MLOps system** that classifies youtube comments
 
 This isn't just a model. It's a full machine learning system with:
 
-- 🔬 **5 structured MLflow experiments** comparing vectorizers, classifiers, and sampling strategies
-- 🤖 **Automated hyperparameter tuning** via Optuna (100 trials, Bayesian search)
-- 📦 **Reproducible DVC pipeline** — from raw data to registered model
-- 🐳 **Dockerized Flask API** deployed automatically via GitHub Actions → AWS ECR → EC2
-- 📊 **MLflow on AWS** tracking every run, parameter, metric, and artifact
+- **5 structured MLflow experiments** comparing vectorizers, classifiers, and sampling strategies
+- **Automated hyperparameter tuning** via Optuna (100 trials, Bayesian search)
+- **Reproducible DVC pipeline** — from raw data to registered model
+- **Dockerized Flask API** deployed automatically via GitHub Actions → AWS ECR → EC2
+- **MLflow on AWS** tracking every run, parameter, metric, and artifact
 
 ```
 37,249 Reddit Comments  →  NLP Pipeline  →  LightGBM (81.3% F1)  →  REST API on AWS
@@ -57,18 +57,18 @@ This isn't just a model. It's a full machine learning system with:
 
 | Metric | Score |
 |--------|-------|
-| 🎯 Weighted F1-Score | **81.3%** |
-| 📈 Best Model | **LightGBM** |
-| 🔧 Tuning Method | **Optuna (100 trials)** |
-| 📐 Feature Space | **10,000 TF-IDF trigrams** |
-| ⚖️ Imbalance Handling | **ADASYN** |
-| 🗂️ MLflow Experiments | **5 structured groups** |
+| Weighted F1-Score | **81.3%** |
+| Best Model | **LightGBM** |
+| Tuning Method | **Optuna (100 trials)** |
+| Feature Space | **10,000 TF-IDF trigrams** |
+| Imbalance Handling | **ADASYN** |
+| MLflow Experiments | **5 structured groups** |
 
 </div>
 
 ---
 
-## 🧠 AI & ML Techniques
+## AI & ML Techniques
 
 ### 🔤 NLP Preprocessing Pipeline
 
@@ -89,7 +89,7 @@ Raw Reddit Text
 | Bag of Words | (1,1) | 10,000 | Baseline |
 | **TF-IDF Trigrams** | **(1,3)** | **10,000** | ✅ **Selected** |
 
-### ⚖️ Class Imbalance — Techniques Compared
+### Class Imbalance — Techniques Compared
 
 | Method | Type | Result |
 |--------|------|--------|
@@ -101,7 +101,7 @@ Raw Reddit Text
 | RandomUnderSampler | Undersampling | Evaluated |
 | class_weight='balanced' | Classifier-side | Evaluated |
 
-### 🏆 Model Comparison
+### Model Comparison
 
 | Model | Notes |
 |-------|-------|
@@ -391,10 +391,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 
 <div align="center">
-
-**Built with passion for MLOps and NLP**
-
-⭐ Star this repo if you found it useful! ⭐
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
 
