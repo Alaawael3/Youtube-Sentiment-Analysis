@@ -5,6 +5,7 @@ import pickle
 from lightgbm import LGBMClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 import os
+from pathlib import Path
 
 # logging configuration
 logger = logging.getLogger("model_building")
@@ -23,8 +24,8 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-
+# ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+ROOT_DIR = Path(__file__).resolve().parent.parent
 
 def load_params(params_path: str) -> dict:
     """Load parameters from a YAML file."""

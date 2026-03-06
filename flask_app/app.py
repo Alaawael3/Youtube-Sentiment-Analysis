@@ -20,6 +20,7 @@ import nltk
 import spacy
 import subprocess
 import sys
+from pathlib import Path
 
 
 nltk.download('stopwords')
@@ -86,6 +87,10 @@ def process_row(text):
 # Initialize the model and vectorizer
 # model, vectorizer = load_model_and_vectorizer("my_model", "1", "./tfidf_vectorizer.pkl")  # Update paths and versions as needed
 
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+
+
 # load the model from my local directory
 def load_model_and_vectorizer(model_path, vectorizer_path):
     try:
@@ -101,7 +106,7 @@ def load_model_and_vectorizer(model_path, vectorizer_path):
 
 try:
     model, vectorizer = load_model_and_vectorizer(
-        "./model/lgbm_model.pkl", "./model/tfidf_vectorizer.pkl"
+        f"{ROOT_DIR}/model/lgbm_model.pkl", f"{ROOT_DIR}/model/tfidf_vectorizer.pkl"
     )
 except Exception as e:
     print(f"Failed to load model or vectorizer: {e}")
@@ -110,6 +115,7 @@ except Exception as e:
     sys.exit(1)
 
 @app.route("/", methods=["GET", "POST"])
+
 def home():
 
     if request.method == "GET":
@@ -150,7 +156,7 @@ def home():
     return jsonify(response), 200
 
 
-
+# extension for chrome
 @app.route("/predict", methods=['POST'])
 def predict():
     data = request.json
