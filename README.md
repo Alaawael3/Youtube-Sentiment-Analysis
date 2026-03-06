@@ -48,7 +48,7 @@ This isn't just a model. It's a full machine learning system with:
 - **MLflow on AWS** tracking every run, parameter, metric, and artifact
 
 ```
-37,249 Reddit Comments  →  NLP Pipeline  →  LightGBM (81.3% F1)  →  REST API on AWS
+37,249 Youtube Comments  →  NLP Pipeline  →  LightGBM (81.3% F1)  →  REST API on AWS
 ```
 
 ---
