@@ -15,19 +15,27 @@
 
 <br/>
 
-> **"Turning 37,249 Reddit comments into production-grade sentiment intelligence — with every experiment tracked, every model versioned, and every deployment automated."**
+> **"Turning 37,249 Youtube comments into production-grade sentiment intelligence — with every experiment tracked, every model versioned, and every deployment automated."**
 
 <br/>
+<div align="center">
 
-[](#img1.jpeg)
-[](#img2.jpeg)
+<img src="img1.jpeg" width="80%"/>
+
+<br><br>
+
+<img src="img2.jpeg" width="80%"/>
+
+</div>
+
+
 </div>
 
 ---
 
 ## 🎯 What Is This?
 
-A **production-ready, end-to-end MLOps system** that classifies Reddit comments into **Positive**, **Neutral**, or **Negative** sentiment — automatically, at scale.
+A **production-ready, end-to-end MLOps system** that classifies youtube comments into **Positive**, **Neutral**, or **Negative** sentiment — automatically, at scale.
 
 This isn't just a model. It's a full machine learning system with:
 
