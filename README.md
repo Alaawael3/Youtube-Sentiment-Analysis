@@ -35,7 +35,7 @@
 
 ---
 
-## 🎯 What Is This?
+## What Is This?
 
 A **production-ready, end-to-end MLOps system** that classifies youtube comments into **Positive**, **Neutral**, or **Negative** sentiment — automatically, at scale.
 
@@ -53,7 +53,7 @@ This isn't just a model. It's a full machine learning system with:
 
 ---
 
-## 📊 Results at a Glance
+## Results at a Glance
 
 <div align="center">
 
@@ -72,7 +72,7 @@ This isn't just a model. It's a full machine learning system with:
 
 ## AI & ML Techniques
 
-### 🔤 NLP Preprocessing Pipeline
+### NLP Preprocessing Pipeline
 
 ```
 Raw Reddit Text
@@ -113,7 +113,7 @@ Raw Reddit Text
 | **LightGBM + Optuna** | ✅ **Winner — 81.3% F1** |
 | Stacking (LightGBM + LR) | Evaluated — marginal gain |
 
-### 🔬 LightGBM — Best Hyperparameters (Optuna, 100 Trials)
+### LightGBM — Best Hyperparameters (Optuna, 100 Trials)
 
 ```yaml
 n_estimators:       886
@@ -167,9 +167,9 @@ reg_lambda (L2):    1.045
 
 ---
 
-## ⚙️ MLOps Stack
+## MLOps Stack
 
-### 🧪 MLflow — Experiment Tracking
+### MLflow — Experiment Tracking
 
 5 experiments logged to MLflow, running on **AWS EC2** with artifacts stored in **S3**:
 
@@ -183,7 +183,7 @@ reg_lambda (L2):    1.045
 
 Every run logs: **params** · **metrics** · **confusion matrix** · **model artifact**
 
-### 🔁 DVC Pipeline
+### DVC Pipeline
 
 ```yaml
 stages:
@@ -194,7 +194,7 @@ stages:
   register_model:      # → MLflow Registry
 ```
 
-### 🐳 Docker
+### Docker
 
 ```dockerfile
 FROM python:3.11-slim-bookworm
@@ -204,7 +204,7 @@ EXPOSE 8080
 CMD ["python3", "flask_app/app.py"]
 ```
 
-### 🚀 GitHub Actions CI/CD
+### GitHub Actions CI/CD
 
 ```
 git push main
@@ -250,7 +250,7 @@ reddit-sentiment-analysis/
 
 ---
 
-## 🏁 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -317,7 +317,7 @@ curl -X POST http://localhost:8080/predict \
 
 ---
 
-## 🔐 GitHub Secrets Required
+## GitHub Secrets Required
 
 For CI/CD to work, add these secrets to your GitHub repository:
 
@@ -331,7 +331,7 @@ For CI/CD to work, add these secrets to your GitHub repository:
 
 ---
 
-## ☁️ AWS Infrastructure Setup
+## AWS Infrastructure Setup
 
 ```bash
 # 1. Launch EC2 (Ubuntu) — open ports 5000 (MLflow) and 8080 (Flask)
@@ -350,12 +350,12 @@ mlflow server \
 # 4. Set up EC2 as GitHub Actions self-hosted runner
 # (Follow GitHub → Settings → Actions → Runners → New self-hosted runner)
 
-# 5. Push to main → GitHub Actions deploys automatically 🎉
+# 5. Push to main → GitHub Actions deploys automatically 
 ```
 
 ---
 
-## 📦 Key Dependencies
+## Key Dependencies
 
 ```txt
 lightgbm==4.6.0
@@ -374,7 +374,7 @@ dvc
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, issues, and feature requests are welcome!
 
@@ -386,7 +386,7 @@ Contributions, issues, and feature requests are welcome!
 
 ---
 
-## 📄 License
+## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
