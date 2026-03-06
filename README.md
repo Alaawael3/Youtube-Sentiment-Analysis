@@ -19,8 +19,8 @@
 
 <br/>
 
-[🚀 Live Demo](#-live-demo) · [📖 How It Works](#-how-it-works) · [🧠 AI Techniques](#-ai--ml-techniques) · [⚙️ MLOps Stack](#️-mlops-stack) · [🏁 Quick Start](#-quick-start)
-
+[](#img1.jpeg)
+[](#img2.jpeg)
 </div>
 
 ---
