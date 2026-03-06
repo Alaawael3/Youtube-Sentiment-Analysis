@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Reddit%20Sentiment%20Analysis&fontSize=48&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=End-to-End%20MLOps%20Pipeline%20%7C%20NLP%20%7C%20LightGBM%20%7C%20MLflow%20%7C%20AWS%20%7C%20Docker&descAlignY=60&descSize=16" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Reddit%20Sentiment%20Analysis&fontSize=48&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=End-to-End%20MLOps%20Pipeline%20%7C%20NLP%20%7C%20LightGBM%20%7C%20MLflow%20%7C%20Flask%20%7C%20AWS%20%7C%20Docker&descAlignY=60&descSize=16" width="100%"/>
 
 <br/>
 
@@ -8,6 +8,8 @@
 [![LightGBM](https://img.shields.io/badge/LightGBM-4.6.0-2980B9?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyTDIgN2wxMCA1IDEwLTV6TTIgMTdsOSA1IDktNXYtNWwtOSA1LTktNXoiLz48L3N2Zz4=&logoColor=white)](https://lightgbm.readthedocs.io)
 [![MLflow](https://img.shields.io/badge/MLflow-3.10.0-0194E2?style=for-the-badge&logo=mlflow&logoColor=white)](https://mlflow.org)
 [![DVC](https://img.shields.io/badge/DVC-Pipeline-945DD6?style=for-the-badge&logo=dvc&logoColor=white)](https://dvc.org)
+[![CI/CD Pipeline](https://img.shields.io/badge/CI/CD-Automated%20Pipeline-0A66C2?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/features/actions)
+[![Flask](https://img.shields.io/badge/Flask-API-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
 [![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com)
 [![AWS](https://img.shields.io/badge/AWS-EC2%20%7C%20ECR%20%7C%20S3-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com)
 [![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/features/actions)
