@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Reddit%20Sentiment%20Analysis&fontSize=48&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=End-to-End%20MLOps%20Pipeline%20%7C%20NLP%20%7C%20LightGBM%20%7C%20MLflow%20%7C%20Flask%20%7C%20AWS%20%7C%20Docker&descAlignY=60&descSize=16" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Reddit%20Sentiment%20Analysis&fontSize=48&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=End-to-End%20MLOps%20Pipeline%20%7C%20NLP%20%7C%20Flask%20%7C%20AWS%20%7C%20Docker&descAlignY=60&descSize=16" width="100%"/>
 
 <br/>
 
@@ -84,7 +84,7 @@ Raw Reddit Text
     └─ Token filtering (alpha-only, len > 2)
 ```
 
-### 📐 Feature Engineering
+### Feature Engineering
 
 | Approach | N-gram Range | Max Features | Result |
 |----------|-------------|--------------|--------|
@@ -129,7 +129,7 @@ reg_lambda (L2):    1.045
 
 ---
 
-## 📖 How It Works
+## How It Works
 
 ### Architecture Overview
 
