@@ -89,6 +89,9 @@ Raw Reddit Text
 | Approach | N-gram Range | Max Features | Result |
 |----------|-------------|--------------|--------|
 | Bag of Words | (1,1) | 10,000 | Baseline |
+| TF-IDF Trigrams | (1,3) | 1,000 | Baseline |
+| TF-IDF Trigrams | (1,3) | 5,000 | Baseline |
+| TF-IDF Trigrams | (1,3) | 7,000 | Baseline |
 | **TF-IDF Trigrams** | **(1,3)** | **10,000** | ✅ **Selected** |
 
 ### Class Imbalance — Techniques Compared
